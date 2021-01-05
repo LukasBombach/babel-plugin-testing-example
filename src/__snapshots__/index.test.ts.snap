@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple example 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.Component = void 0;
+
+var _react = _interopRequireDefault(require(\\"react\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const StyledComponent = props => _react.default.createElement(\\"div\\", {
+  \\"className\\": \\"p12p\\"
+}, {
+  \\"props\\": \\"children\\"
+});
+
+const Component = () => <StyledComponent />;
+
+exports.Component = Component;"
+`;

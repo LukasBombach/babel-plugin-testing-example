@@ -23,14 +23,6 @@ const StyledComponent = styled.div({
 export const Component = () => <StyledComponent />;
 `;
 
-  const output = `
-import React from "react";
-
-const StyledComponent = ({children}) => React.createElement("div", {className: 'example'}, children);
-
-export const Component = () => <StyledComponent />;
-`;
-
   const { code } = await transform(source);
-  expect(code).toBe(output);
+  expect(code).toMatchSnapshot();
 });
