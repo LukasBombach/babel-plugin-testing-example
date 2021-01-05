@@ -1,12 +1,33 @@
-import type { Visitor } from "@babel/core";
+import { Visitor, PluginPass } from "@babel/core";
+import { detectStyledImportName } from "./DetectStyledImportName";
 
-export default function testPlugin(): { visitor: Visitor } {
+export interface State extends PluginPass {
+  file: Omit<PluginPass["file"], "metadata"> & {
+    metadata: {
+      importName: string;
+    };
+  };
+}
+
+export default function passerine({
+  types,
+}: typeof types): { visitor: Visitor<State> } {
   return {
     visitor: {
-      Identifier(path) {
-        if (path.node.name === "foo") {
-          path.node.name = "baz";
-        }
+      Program: {
+        enter(path, state) {
+          path.traverse({
+            ImportDeclaration(path) {
+              detectStyledImportName(types, path, state);
+            },
+          });
+
+          if (!state.file.metadata.importName) {
+            console.warn("COULD NOT FIND IMPORT NAME");
+          }
+
+          debugger;
+        },
       },
     },
   };

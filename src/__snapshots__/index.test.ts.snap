@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`setup it works 1`] = `
-"\\"use strict\\";
-
-const baz = 1;
-if (baz) console.log(baz);"
-`;
