@@ -15,12 +15,12 @@ export function detectStyledImportName(
   }
 
   path.node.specifiers.forEach(specifier => {
-    if (t.isImportDefaultSpecifier(specifier)) {
+    if (
+      t.isImportDefaultSpecifier(specifier) ||
+      t.isImportSpecifier(specifier)
+    ) {
       state.file.metadata.importName = specifier.local.name;
-    }
-
-    if (t.isImportSpecifier(specifier)) {
-      state.file.metadata.importName = specifier.local.name;
+      path.remove();
     }
   });
 }
